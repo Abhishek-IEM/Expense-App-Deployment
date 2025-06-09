@@ -144,7 +144,7 @@ const HomePage = () => {
       });
       message.success("Transaction Deleted!");
       setLoading(false);
-      fetchTransactions(); // Re-fetch transactions after deletion
+      fetchTransactions(); 
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -172,7 +172,7 @@ const HomePage = () => {
       setLoading(false);
       setShowModal(false);
       setEditable(null);
-      fetchTransactions(); // Re-fetch transactions to update UI
+      fetchTransactions(); 
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -194,7 +194,7 @@ const HomePage = () => {
       <div className="filters">
         <div>
           <h6>Select Filters</h6>
-          <Select value={frequency} onChange={(values) => setFrequency(values)}>
+          <Select value={frequency} onChange={(values) => setFrequency(values)} style={{width: 150}}>
             <Select.Option value="7">Last 1 Week</Select.Option>
             <Select.Option value="30">Last 1 Month</Select.Option>
             <Select.Option value="365">Last 1 Year</Select.Option>
@@ -209,7 +209,7 @@ const HomePage = () => {
         </div>
         <div>
           <h6>Select Type</h6>
-          <Select value={type} onChange={(values) => setType(values)}>
+          <Select value={type} onChange={(values) => setType(values)} style={{ width: 100, fontSize: 16 }}>
             <Select.Option value="all">All</Select.Option>
             <Select.Option value="income">Income</Select.Option>
             <Select.Option value="expense">Expense</Select.Option>
@@ -261,7 +261,7 @@ const HomePage = () => {
           <Table
             columns={columns}
             dataSource={allTransaction}
-            pagination={{ pageSize: 8 }}
+            pagination={{ pageSize: 10 }}
           />
         )}
         {viewData === "analytics" && (
@@ -327,7 +327,6 @@ const HomePage = () => {
           </div>
         </Form>
       </Modal>
-      ;
     </Layout>
   );
 };

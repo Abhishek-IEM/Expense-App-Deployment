@@ -1,0 +1,82 @@
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loginContainer {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.loginForm {
+  width: 100%;
+}
+
+.loginForm h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.loginForm .ant-form-item-label > label {
+  font-weight: 500;
+  color: #555;
+}
+
+.loginForm .ant-input {
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.loginActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.loginBtn {
+  background-color: #4facfe;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginBtn:hover {
+  background-color: #3399ff;
+}
+
+.loginForm a {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.loginForm a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .loginContainer {
+    padding: 25px 20px;
+  }
+
+  .loginForm h1 {
+    font-size: 24px;
+  }
+}

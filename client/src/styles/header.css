@@ -1,17 +1,53 @@
+/* Base navbar styles */
 .navbar {
-    background-color: #6f4e3742 !important;
-  }
-  .navbar .navbar-brand {
-    color: #6f4e37 !important;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  
-  .nav-link {
-    font-size: 16px;
-  }
-  
-  .navbar h6 {
-    margin-top: 0px;
-    margin-right: 20px;
-  }
+  background-color: var(--bg-navbar);
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--text-secondary);
+}
+
+.nav-link {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-secondary);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  padding: 8px 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 16px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: var(--text-secondary);
+}

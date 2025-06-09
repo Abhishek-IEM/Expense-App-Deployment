@@ -3,15 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import "../styles/login.css"
+import styles from "../styles/login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
-
-  const img =
-  "https://images.unsplash.com/photo-1593538312308-d4c29d8dc7f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
 
   const submitHandler = async (values) => {
     try {
@@ -31,7 +27,6 @@ const Login = () => {
     }
   };
 
-  //prevent for login user
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
@@ -39,35 +34,25 @@ const Login = () => {
   }, [navigate]);
 
   return (
-    <>
-       <div className="login-page ">
-        {loading && <Spinner />}
-        <div className="row container">
-          <h1>Expense Managment System - MERN STACK</h1>
-          <div className="col-md-6">
-            <img src={img} alt="login-img" width={"100%"} height="100%" />
-          </div>
-          <div className="col-md-4 login-form">
-            <Form layout="vertical" onFinish={submitHandler}>
-              <h1>Login Form</h1>
+    <div className={styles.loginPage}>
+      {loading && <Spinner />}
+      <div className={styles.loginContainer}>
+        <Form layout="vertical" onFinish={submitHandler} className={styles.loginForm}>
+          <h1>Login Form</h1>
 
-              <Form.Item label="Email" name="email">
-                <Input type="email" required />
-              </Form.Item>
-              <Form.Item label="Password" name="password">
-                <Input type="password" required />
-              </Form.Item>
-              <div className="d-flex justify-content-between">
-                <Link to="/register">
-                  Not a user ? Click Here to regsiter !
-                </Link>
-                <button className="btn">Login</button>
-              </div>
-            </Form>
+          <Form.Item label="Email" name="email">
+            <Input type="email" required />
+          </Form.Item>
+          <Form.Item label="Password" name="password">
+            <Input type="password" required />
+          </Form.Item>
+          <div className={styles.loginActions}>
+            <Link to="/register">Not a user? Click here to register!</Link>
+            <button className={styles.loginBtn}>Login</button>
           </div>
-        </div>
+        </Form>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { message } from "antd";
 import "../../styles/header.css";
 import "../../styles/mode.css";
-import { FaSun, FaMoon } from "react-icons/fa";
-
+import { FaSun, FaMoon, FaRegUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const [loginUser, setLoginUser] = useState("");
@@ -57,16 +56,28 @@ const Header = () => {
               Expense Management
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <div className="icon mt-2" onClick={change}>
-                {mode === "light-mode" ? <FaSun size={22} /> : <FaMoon size={22} />}
+              <li className="nav-item d-flex align-items-center me-3">
+                <div
+                  className="icon"
+                  onClick={change}
+                  style={{ cursor: "pointer" }}
+                >
+                  {mode === "light-mode" ? (
+                    <FaSun size={22} />
+                  ) : (
+                    <FaMoon size={22} />
+                  )}
                 </div>
               </li>
-              <li className="nav-item">
-                {" "}
-                <p className="nav-link">{loginUser && loginUser.name}</p>
+
+              <li className="nav-item d-flex align-items-center me-3 cursor-pointer">
+                <div className="d-flex align-items-center gap-2">
+                  <FaRegUserCircle size={20} />
+                  <span>{loginUser && loginUser.name}</span>
+                </div>
               </li>
-              <li className="nav-item">
+
+              <li className="nav-item d-flex align-items-center">
                 <button className="btn btn-danger" onClick={logoutHandler}>
                   Logout
                 </button>
