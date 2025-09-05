@@ -16,10 +16,12 @@ const registerController = async (req, res) => {
     const newUser = new userModel({ name, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ success: true, message: "User registered successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "User registered successfully" });
   } catch (error) {
     console.error("Error in Register:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
@@ -39,7 +41,7 @@ const loginController = async (req, res) => {
     res.status(200).json({ success: true, message: "Login Successful", user });
   } catch (error) {
     console.error("Error in Login:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

@@ -54,11 +54,31 @@ const addTransaction = async (req, res) => {
   try {
     const newTransaction = new transactionModel(req.body);
     await newTransaction.save();
-    res.status(201).send("Transaction created");
+    res.status(201).json({ success: true, message: "Transaction created" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json(error);
+    console.error(error);
+
+    // Handle mongoose validation errors
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: Object.values(error.errors)
+          .map((err) => err.message)
+          .join(", "),
+      });
+    }
+
+    // Handle other errors
+    res.status(500).json({
+      success: false,
+      message: "Server error, please try again later",
+    });
   }
 };
 
-module.exports = { getAllTransaction, addTransaction, editTransaction, deleteTransaction };
+module.exports = {
+  getAllTransaction,
+  addTransaction,
+  editTransaction,
+  deleteTransaction,
+};

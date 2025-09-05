@@ -12,7 +12,7 @@ const Analytics = ({ allTransaction }) => {
     "medical",
   ];
 
-  // Total transactions component
+  // Total transactions
   const totalTransaction = allTransaction.length;
   const totalIncomeTransactions = allTransaction.filter(
     (transaction) => transaction.type === "income"
@@ -20,12 +20,18 @@ const Analytics = ({ allTransaction }) => {
   const totalExpenseTransactions = allTransaction.filter(
     (transaction) => transaction.type === "expense"
   );
-  const totalIncomePercent =
-    (totalIncomeTransactions.length / totalTransaction) * 100;
-  const totalExpensePercent =
-    (totalExpenseTransactions.length / totalTransaction) * 100;
 
-  //total turnover
+  // prevent NaN by checking totalTransaction > 0
+  const totalIncomePercent =
+    totalTransaction > 0
+      ? (totalIncomeTransactions.length / totalTransaction) * 100
+      : 0;
+  const totalExpensePercent =
+    totalTransaction > 0
+      ? (totalExpenseTransactions.length / totalTransaction) * 100
+      : 0;
+
+  // Total turnover
   const totalTurnover = allTransaction.reduce(
     (acc, transaction) => acc + transaction.amount,
     0
@@ -38,14 +44,16 @@ const Analytics = ({ allTransaction }) => {
     .filter((transaction) => transaction.type === "expense")
     .reduce((acc, transaction) => acc + transaction.amount, 0);
 
+  // prevent NaN by checking totalTurnover > 0
   const totalIncomeTurnoverPercent =
-    (totalIncomeTurnover / totalTurnover) * 100;
+    totalTurnover > 0 ? (totalIncomeTurnover / totalTurnover) * 100 : 0;
   const totalExpenseTurnoverPercent =
-    (totalExpenseTurnover / totalTurnover) * 100;
+    totalTurnover > 0 ? (totalExpenseTurnover / totalTurnover) * 100 : 0;
 
   return (
     <>
       <div className="row m-3 analytics">
+        {/* Total Transactions */}
         <div className="col-md-3">
           <div className="card">
             <div className="card-header">
@@ -75,6 +83,8 @@ const Analytics = ({ allTransaction }) => {
             </div>
           </div>
         </div>
+
+        {/* Total Turnover */}
         <div className="col-md-3">
           <div className="card">
             <div className="card-header">Total TurnOver : {totalTurnover}</div>
@@ -98,6 +108,8 @@ const Analytics = ({ allTransaction }) => {
             </div>
           </div>
         </div>
+
+        {/* Categorywise Income */}
         <div className="col-md-3">
           <h6 className="bg-dark p-2 text-light">Categorywise Income</h6>
           <div className="category-container overflow-auto">
@@ -109,16 +121,18 @@ const Analytics = ({ allTransaction }) => {
                     transaction.category === category
                 )
                 .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+              const percent =
+                totalIncomeTurnover > 0
+                  ? ((amount / totalIncomeTurnover) * 100).toFixed(0)
+                  : 0;
+
               return (
                 amount > 0 && (
-                  <div className="card mt-2">
+                  <div className="card mt-2" key={category}>
                     <div className="card-body">
                       <h6>{category}</h6>
-                      <Progress
-                        percent={((amount / totalIncomeTurnover) * 100).toFixed(
-                          0
-                        )}
-                      />
+                      <Progress percent={percent} />
                     </div>
                   </div>
                 )
@@ -127,6 +141,7 @@ const Analytics = ({ allTransaction }) => {
           </div>
         </div>
 
+        {/* Categorywise Expense */}
         <div className="col-md-3">
           <h6 className="bg-warning p-2 text-light">Categorywise Expense</h6>
           <div className="category-container overflow-auto ">
@@ -138,17 +153,18 @@ const Analytics = ({ allTransaction }) => {
                     transaction.category === category
                 )
                 .reduce((acc, transaction) => acc + transaction.amount, 0);
+
+              const percent =
+                totalExpenseTurnover > 0
+                  ? ((amount / totalExpenseTurnover) * 100).toFixed(0)
+                  : 0;
+
               return (
                 amount > 0 && (
-                  <div className="card mt-2">
+                  <div className="card mt-2" key={category}>
                     <div className="card-body">
                       <h6>{category}</h6>
-                      <Progress
-                        percent={(
-                          (amount / totalExpenseTurnover) *
-                          100
-                        ).toFixed(0)}
-                      />
+                      <Progress percent={percent} />
                     </div>
                   </div>
                 )
@@ -157,7 +173,6 @@ const Analytics = ({ allTransaction }) => {
           </div>
         </div>
       </div>
-      <div className="row mt-6 analytics"></div>
     </>
   );
 };

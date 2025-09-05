@@ -144,7 +144,7 @@ const HomePage = () => {
       });
       message.success("Transaction Deleted!");
       setLoading(false);
-      fetchTransactions(); 
+      fetchTransactions();
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -172,7 +172,7 @@ const HomePage = () => {
       setLoading(false);
       setShowModal(false);
       setEditable(null);
-      fetchTransactions(); 
+      fetchTransactions();
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -194,7 +194,11 @@ const HomePage = () => {
       <div className="filters">
         <div>
           <h6>Select Filters</h6>
-          <Select value={frequency} onChange={(values) => setFrequency(values)} style={{width: 150}}>
+          <Select
+            value={frequency}
+            onChange={(values) => setFrequency(values)}
+            style={{ width: 150 }}
+          >
             <Select.Option value="7">Last 1 Week</Select.Option>
             <Select.Option value="30">Last 1 Month</Select.Option>
             <Select.Option value="365">Last 1 Year</Select.Option>
@@ -209,7 +213,11 @@ const HomePage = () => {
         </div>
         <div>
           <h6>Select Type</h6>
-          <Select value={type} onChange={(values) => setType(values)} style={{ width: 100, fontSize: 16 }}>
+          <Select
+            value={type}
+            onChange={(values) => setType(values)}
+            style={{ width: 100, fontSize: 16 }}
+          >
             <Select.Option value="all">All</Select.Option>
             <Select.Option value="income">Income</Select.Option>
             <Select.Option value="expense">Expense</Select.Option>
@@ -290,16 +298,28 @@ const HomePage = () => {
         footer={false}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
-          <Form.Item label="Amount" name="amount">
+          <Form.Item
+            label="Amount"
+            name="amount"
+            rules={[{ required: true, message: "Please enter amount" }]}
+          >
             <Input type="number" />
           </Form.Item>
-          <Form.Item label="Type" name="type">
+          <Form.Item
+            label="Type"
+            name="type"
+            rules={[{ required: true, message: "Please select type" }]}
+          >
             <Select>
               <Select.Option value="income">Income</Select.Option>
               <Select.Option value="expense">Expense</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Category" name="category">
+          <Form.Item
+            label="Category"
+            name="category"
+            rules={[{ required: true, message: "Please enter category" }]}
+          >
             <Select>
               <Select.Option value="salary">Salary</Select.Option>
               <Select.Option value="subscription">Subscription</Select.Option>
@@ -311,13 +331,25 @@ const HomePage = () => {
               <Select.Option value="medical">Medical</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Date" name="date">
+          <Form.Item
+            label="Date"
+            name="date"
+            rules={[{ required: true, message: "Please select date" }]}
+          >
             <DatePicker format="YYYY-MM-DD" />
           </Form.Item>
-          <Form.Item label="Reference" name="reference">
+          <Form.Item
+            label="Reference"
+            name="reference"
+            rules={[{ required: true, message: "Please enter the reference" }]}
+          >
             <Input type="text" />
           </Form.Item>
-          <Form.Item label="Description" name="description">
+          <Form.Item
+            label="Description"
+            name="description"
+            rules={[{ required: true, message: "Please enter description" }]}
+          >
             <Input type="text" />
           </Form.Item>
           <div className="d-flex justify-content-end">
