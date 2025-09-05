@@ -1,25 +1,31 @@
-💰 Expense Management App
+💰 EXPENSE MANAGEMENT APP
 
-The Expense Management App is a full-stack web application that helps users track and manage their personal finances. Built with the MERN stack (MongoDB, Express, React, Node.js), it allows users to securely log in, add, edit, and delete expenses, categorize them, and visualize spending patterns.
+Track and manage your personal finances effortlessly! This is a full-stack web application where users can securely log in, add, edit, and delete expenses, categorize them, and visualize spending patterns. The app is built with the MERN stack and deployed on Render.
 
 🔗 Live Demo: https://expense-app-deployment.onrender.com/
 
-🛠️ Features
+🚀 Features
 
-🔐 User Authentication: Secure login and registration using JWT.
+🔐 User Authentication: Secure login and registration using JWT
 
-💸 Expense Tracking: Add, edit, and delete expenses with categorized entries.
+💸 Expense Tracking: Add, edit, and delete categorized expenses
 
-📊 Data Visualization: Analyze spending trends through charts and graphs.
+📊 Data Visualization: View spending trends through charts and graphs
 
-📱 Responsive Design: Mobile-friendly interface for access on the go.
+📱 Responsive Design: Mobile-friendly interface for on-the-go access
 
-🔒 Secure Communication: All data is transmitted over HTTPS.
+🔒 Secure Communication: All data transmitted over HTTPS
 
-🚀 Technologies Used
-Layer	Technology
-Frontend	React, Redux, Axios
-Backend	Node.js, Express.js
-Database	MongoDB
-Authentication	JWT (JSON Web Tokens)
-Styling	CSS, Bootstrap
+🛠️ Tech Stack
+
+Frontend: React.js, Redux, Axios, CSS, Bootstrap
+
+Backend: Node.js, Express.js
+
+Database: MongoDB
+
+Authentication: JWT (JSON Web Tokens)
+
+Email Service: Nodemailer (for password recovery)
+
+Deployment: Render (Frontend & Backend)
